@@ -80,10 +80,7 @@ export function FooterProvider({ children }: { children: ReactNode }) {
         setFooterData({ ...defaultFooterData, ...data.content });
       }
     } catch (error) {
-      console.error(
-        "Database connection error for footer:",
-        error instanceof Error ? error.message : String(error),
-      );
+      logDatabaseError("footer", error);
       console.info(
         "Using default footer data due to database connection issue",
       );
