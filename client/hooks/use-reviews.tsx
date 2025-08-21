@@ -6,6 +6,7 @@ import {
   ReactNode,
 } from "react";
 import { supabase } from "@/lib/supabaseClient";
+import { logError, logDatabaseError } from "@/lib/error-utils";
 
 interface Review {
   name: string;
@@ -75,12 +76,7 @@ export function ReviewsProvider({ children }: { children: ReactNode }) {
         if (error.code === "PGRST116" || error.code === "42P01") {
           console.info("Customer reviews table not found, using default data");
         } else {
-          console.error("Error loading reviews data:", {
-            message: error.message,
-            code: error.code,
-            details: error.details,
-            hint: error.hint,
-          });
+          logError("Error loading reviews data:", error);
         }
         return;
       }
@@ -89,10 +85,7 @@ export function ReviewsProvider({ children }: { children: ReactNode }) {
         setReviewsData({ ...defaultReviewsData, ...data.content });
       }
     } catch (error) {
-      console.error(
-        "Database connection error for reviews:",
-        error instanceof Error ? error.message : String(error),
-      );
+      logDatabaseError("reviews", error);
       console.info(
         "Using default reviews data due to database connection issue",
       );
