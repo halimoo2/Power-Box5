@@ -6,6 +6,7 @@ import {
   ReactNode,
 } from "react";
 import { supabase } from "@/lib/supabaseClient";
+import { logError } from "@/lib/error-utils";
 
 interface ProductPopupData {
   title: string;
@@ -252,7 +253,7 @@ export function useEmailSubscription() {
 
       return { success: true, message: "Successfully subscribed!" };
     } catch (error) {
-      console.error("Error subscribing email:", error);
+      logError("Error subscribing email:", error);
       return {
         success: false,
         message: "Error subscribing. Please try again.",

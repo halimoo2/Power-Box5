@@ -7,6 +7,7 @@ import {
 } from "react";
 import { Helmet, HelmetProvider } from "react-helmet-async";
 import { supabase } from "@/lib/supabaseClient";
+import { logError } from "@/lib/error-utils";
 
 interface SEOData {
   meta_title: string;
@@ -58,12 +59,7 @@ export function SEOProvider({ children }: { children: ReactNode }) {
         if (error.code === "PGRST116" || error.code === "42P01") {
           console.info("SEO settings table not found, using default data");
         } else {
-          console.error("Error loading SEO data:", {
-            message: error.message,
-            code: error.code,
-            details: error.details,
-            hint: error.hint,
-          });
+          logError("Error loading SEO data:", error);
         }
         return;
       }

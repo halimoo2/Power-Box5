@@ -12,6 +12,7 @@ import {
   Image as ImageIcon,
   Link as LinkIcon,
 } from "lucide-react";
+import { logError } from "@/lib/error-utils";
 
 interface WhyChooseCard {
   title: string;
@@ -149,7 +150,7 @@ export default function WhyChoose() {
         const parsed = JSON.parse(savedData);
         setWhyChooseData(parsed);
       } catch (error) {
-        console.error("Error loading saved data:", error);
+        logError("Error loading saved data:", error);
       }
     }
   }, []);

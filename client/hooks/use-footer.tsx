@@ -6,6 +6,7 @@ import {
   ReactNode,
 } from "react";
 import { supabase } from "@/lib/supabaseClient";
+import { logError, logDatabaseError } from "@/lib/error-utils";
 
 interface SocialLink {
   name: string;
@@ -70,12 +71,7 @@ export function FooterProvider({ children }: { children: ReactNode }) {
         if (error.code === "PGRST116" || error.code === "42P01") {
           console.info("Footer table not found, using default data");
         } else {
-          console.error("Error loading footer data:", {
-            message: error.message,
-            code: error.code,
-            details: error.details,
-            hint: error.hint,
-          });
+          logError("Error loading footer data:", error);
         }
         return;
       }
@@ -84,10 +80,7 @@ export function FooterProvider({ children }: { children: ReactNode }) {
         setFooterData({ ...defaultFooterData, ...data.content });
       }
     } catch (error) {
-      console.error(
-        "Database connection error for footer:",
-        error instanceof Error ? error.message : String(error),
-      );
+      logDatabaseError("footer", error);
       console.info(
         "Using default footer data due to database connection issue",
       );

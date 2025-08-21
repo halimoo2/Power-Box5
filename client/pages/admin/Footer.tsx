@@ -14,6 +14,7 @@ import {
   Youtube,
 } from "lucide-react";
 import { supabase } from "@/lib/supabaseClient";
+import { logError } from "@/lib/error-utils";
 
 interface FooterData {
   social_links: {
@@ -109,7 +110,7 @@ export default function Footer() {
         .single();
 
       if (error && error.code !== "PGRST116") {
-        console.error("Error loading data:", error);
+        logError("Error loading data:", error);
         return;
       }
 
@@ -117,7 +118,7 @@ export default function Footer() {
         setFooterData(data.content);
       }
     } catch (error) {
-      console.error("Error loading data:", error);
+      logError("Error loading data:", error);
     } finally {
       setIsLoading(false);
     }
@@ -133,13 +134,13 @@ export default function Footer() {
       });
 
       if (error) {
-        console.error("Error saving data:", error);
+        logError("Error saving data:", error);
         alert("Error saving Footer section. Please try again.");
       } else {
         alert("Footer section saved successfully!");
       }
     } catch (error) {
-      console.error("Error saving data:", error);
+      logError("Error saving data:", error);
       alert("Error saving Footer section. Please try again.");
     } finally {
       setIsSaving(false);

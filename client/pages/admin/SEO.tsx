@@ -18,6 +18,7 @@ import {
 } from "lucide-react";
 import { supabase } from "@/lib/supabaseClient";
 import { useSEO } from "@/hooks/use-seo";
+import { logError } from "@/lib/error-utils";
 
 interface SEOData {
   meta_title: string;
