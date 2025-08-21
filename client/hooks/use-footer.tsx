@@ -6,6 +6,7 @@ import {
   ReactNode,
 } from "react";
 import { supabase } from "@/lib/supabaseClient";
+import { logError, logDatabaseError } from "@/lib/error-utils";
 
 interface SocialLink {
   name: string;
