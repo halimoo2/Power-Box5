@@ -252,7 +252,7 @@ export function useEmailSubscription() {
 
       return { success: true, message: "Successfully subscribed!" };
     } catch (error) {
-      console.error("Error subscribing email:", error);
+      console.error("Error subscribing email:", error instanceof Error ? error.message : String(error));
       return {
         success: false,
         message: "Error subscribing. Please try again.",
