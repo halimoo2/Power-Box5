@@ -12,6 +12,7 @@ import {
   Image as ImageIcon,
   Link as LinkIcon,
 } from "lucide-react";
+import { logError } from "@/lib/error-utils";
 
 interface WhyChooseCard {
   title: string;
