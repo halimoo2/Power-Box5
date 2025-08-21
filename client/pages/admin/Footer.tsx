@@ -14,6 +14,7 @@ import {
   Youtube,
 } from "lucide-react";
 import { supabase } from "@/lib/supabaseClient";
+import { logError } from "@/lib/error-utils";
 
 interface FooterData {
   social_links: {
