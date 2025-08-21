@@ -97,7 +97,12 @@ export function WhyChooseProvider({ children }: { children: ReactNode }) {
             "Why choose section table not found, using default data",
           );
         } else {
-          console.error("Error loading why choose data:", error);
+          console.error("Error loading why choose data:", {
+            message: error.message,
+            code: error.code,
+            details: error.details,
+            hint: error.hint,
+          });
         }
         return;
       }
