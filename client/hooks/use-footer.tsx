@@ -71,12 +71,7 @@ export function FooterProvider({ children }: { children: ReactNode }) {
         if (error.code === "PGRST116" || error.code === "42P01") {
           console.info("Footer table not found, using default data");
         } else {
-          console.error("Error loading footer data:", {
-            message: error.message,
-            code: error.code,
-            details: error.details,
-            hint: error.hint,
-          });
+          logError("Error loading footer data:", error);
         }
         return;
       }
