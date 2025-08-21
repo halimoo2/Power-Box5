@@ -6,6 +6,7 @@ import {
   ReactNode,
 } from "react";
 import { supabase } from "@/lib/supabaseClient";
+import { logError } from "@/lib/error-utils";
 
 interface Benefit {
   title: string;
@@ -97,12 +98,7 @@ export function WhyChooseProvider({ children }: { children: ReactNode }) {
             "Why choose section table not found, using default data",
           );
         } else {
-          console.error("Error loading why choose data:", {
-            message: error.message,
-            code: error.code,
-            details: error.details,
-            hint: error.hint,
-          });
+          logError("Error loading why choose data:", error);
         }
         return;
       }
