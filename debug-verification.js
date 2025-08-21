@@ -39,5 +39,9 @@ try {
 }
 
 console.log("✅ Data loading verification complete!");
-console.log("📋 Check the console above for any remaining '[object Object]' errors");
-console.log("🎯 All error logging should now show detailed error information instead of '[object Object]'");
+console.log(
+  "📋 Check the console above for any remaining '[object Object]' errors",
+);
+console.log(
+  "🎯 All error logging should now show detailed error information instead of '[object Object]'",
+);
