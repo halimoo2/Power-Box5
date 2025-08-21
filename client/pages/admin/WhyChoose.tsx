@@ -150,7 +150,7 @@ export default function WhyChoose() {
         const parsed = JSON.parse(savedData);
         setWhyChooseData(parsed);
       } catch (error) {
-        console.error("Error loading saved data:", error);
+        logError("Error loading saved data:", error);
       }
     }
   }, []);
